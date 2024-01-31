@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-modal .ant-modal-content {
+  height: 100%;
+}
+
+.custom-mini-modal-history .ant-modal-content {
+  height: 100%;
+}
