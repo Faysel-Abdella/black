@@ -140,6 +140,7 @@ export default function Contact() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -150,6 +151,7 @@ export default function Contact() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -163,10 +165,12 @@ export default function Contact() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       } else {
         // If the end date is  specified filter all dates greater than or equal start date and less than or equal to end date
 
@@ -177,6 +181,7 @@ export default function Contact() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -196,10 +201,12 @@ export default function Contact() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       }
     } else {
       let filterResult: any = [];
@@ -208,6 +215,7 @@ export default function Contact() {
           (list: any) => list.status == statusFilter
         );
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -218,6 +226,7 @@ export default function Contact() {
               .includes(searchQuery.toString().toLowerCase())
           );
           if (filterResult.length == 0) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
@@ -230,12 +239,14 @@ export default function Contact() {
               .includes(searchQuery.toString().toLowerCase())
           );
           if (filterResult.length == 0) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
       }
 
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -256,6 +267,7 @@ export default function Contact() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -266,6 +278,7 @@ export default function Contact() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -279,10 +292,12 @@ export default function Contact() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       }
     } else {
       let filterResult: any = [];
@@ -293,6 +308,7 @@ export default function Contact() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (statusFilter != "" && statusFilter != "all") {
@@ -302,6 +318,7 @@ export default function Contact() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -313,6 +330,7 @@ export default function Contact() {
           );
         }
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       }
@@ -321,6 +339,7 @@ export default function Contact() {
           (list: any) => list.status == statusFilter
         );
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -332,10 +351,12 @@ export default function Contact() {
           );
         }
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       }
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -385,9 +406,11 @@ export default function Contact() {
         );
       }
       if (filterResult.length == 0) {
+        setTotal(0);
         return setShowNotFound(true);
       }
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     } else {
       if (startDateFilter && endDataFilter) {
         filterResult = queriesList.filter(
@@ -396,6 +419,7 @@ export default function Contact() {
             new Date(list.registrationDate) <= new Date(endDataFilter)
         );
         if (filterResult.length == 0 && !searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -407,6 +431,7 @@ export default function Contact() {
           );
         }
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       } else if (startDateFilter) {
@@ -417,6 +442,7 @@ export default function Contact() {
             new Date(list.registrationDate) >= new Date(startDateFilter)
         );
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -428,6 +454,7 @@ export default function Contact() {
           );
         }
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         console.log(filterResult);
@@ -440,12 +467,14 @@ export default function Contact() {
               .includes(searchQuery.toString().toLowerCase())
           );
           if (filterResult.length == 0 && searchQuery) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
       }
 
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -459,6 +488,10 @@ export default function Contact() {
 
     let filterResult: any = [];
 
+    console.log(searchFrom);
+
+    console.log(queriesList);
+
     filterResult = queriesList.filter((member: any) =>
       member[searchFrom]
         .toString()
@@ -466,7 +499,10 @@ export default function Contact() {
         .includes(searchQuery.toString().toLowerCase())
     );
 
+    console.log(filterResult);
+
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
@@ -477,6 +513,7 @@ export default function Contact() {
     }
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
@@ -494,10 +531,12 @@ export default function Contact() {
     }
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
     setLatestFiltersResult(filterResult);
+    setTotal(filterResult.length);
   };
 
   const columns = [

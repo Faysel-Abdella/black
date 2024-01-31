@@ -54,7 +54,7 @@ export default function Membership() {
   const [membersList, setMembersList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   // Search functionality states
-  const [searchFrom, setSearchFrom] = useState("name");
+  const [searchFrom, setSearchFrom] = useState("loginId");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -173,6 +173,7 @@ export default function Membership() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -183,6 +184,7 @@ export default function Membership() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -196,10 +198,14 @@ export default function Membership() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
+        setTotal(filterResult.length);
+
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       } else {
         // If the end date is  specified filter all dates greater than or equal start date and less than or equal to end date
 
@@ -210,6 +216,7 @@ export default function Membership() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -229,18 +236,22 @@ export default function Membership() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       }
     } else {
       let filterResult: any = [];
+
       if (statusFilter != "" && statusFilter != "all") {
         filterResult = membersList.filter(
           (list: any) => list.accountStatus == statusFilter
         );
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -251,6 +262,7 @@ export default function Membership() {
               .includes(searchQuery.toString().toLowerCase())
           );
           if (filterResult.length == 0) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
@@ -263,12 +275,15 @@ export default function Membership() {
               .includes(searchQuery.toString().toLowerCase())
           );
           if (filterResult.length == 0) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
       }
 
       setLatestFiltersResult(filterResult);
+
+      setTotal(filterResult.length);
     }
   };
 
@@ -289,6 +304,7 @@ export default function Membership() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -299,20 +315,26 @@ export default function Membership() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         if (searchQuery) {
           filterResult = filterResult.filter((member: any) =>
-            member.name.toLowerCase().includes(searchQuery.toLowerCase())
+            member[searchFrom]
+              .toString()
+              .toLowerCase()
+              .includes(searchQuery.toString().toLowerCase())
           );
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       }
     } else {
       let filterResult: any = [];
@@ -322,6 +344,7 @@ export default function Membership() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (statusFilter != "" && statusFilter != "all") {
@@ -331,14 +354,19 @@ export default function Membership() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
           filterResult = filterResult.filter((member: any) =>
-            member.name.toLowerCase().includes(searchQuery.toLowerCase())
+            member[searchFrom]
+              .toString()
+              .toLowerCase()
+              .includes(searchQuery.toString().toLowerCase())
           );
         }
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       }
@@ -347,18 +375,24 @@ export default function Membership() {
           (list: any) => list.accountStatus == statusFilter
         );
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
           filterResult = filterResult.filter((member: any) =>
-            member.name.toLowerCase().includes(searchQuery.toLowerCase())
+            member[searchFrom]
+              .toString()
+              .toLowerCase()
+              .includes(searchQuery.toString().toLowerCase())
           );
         }
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       }
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -376,7 +410,7 @@ export default function Membership() {
     setStatusFilter(selectedValue);
     setShowNotFound(false);
 
-    console.log(searchQuery);
+    console.log(selectedValue);
 
     const filterFrom = membersList;
 
@@ -400,13 +434,18 @@ export default function Membership() {
       }
       if (searchQuery) {
         filterResult = filterResult.filter((member: any) =>
-          member.name.toLowerCase().includes(searchQuery.toLowerCase())
+          member[searchFrom]
+            .toString()
+            .toLowerCase()
+            .includes(searchQuery.toString().toLowerCase())
         );
       }
       if (filterResult.length == 0) {
+        setTotal(0);
         return setShowNotFound(true);
       }
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     } else {
       if (startDateFilter && endDataFilter) {
         filterResult = membersList.filter(
@@ -415,14 +454,19 @@ export default function Membership() {
             new Date(list.joinDate) <= new Date(endDataFilter)
         );
         if (filterResult.length == 0 && !searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
           filterResult = filterResult.filter((member: any) =>
-            member.name.toLowerCase().includes(searchQuery.toLowerCase())
+            member[searchFrom]
+              .toString()
+              .toLowerCase()
+              .includes(searchQuery.toString().toLowerCase())
           );
         }
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       } else if (startDateFilter) {
@@ -430,29 +474,40 @@ export default function Membership() {
           (list: any) => new Date(list.joinDate) >= new Date(startDateFilter)
         );
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
           filterResult = filterResult.filter((member: any) =>
-            member.name.toLowerCase().includes(searchQuery.toLowerCase())
+            member[searchFrom]
+              .toString()
+              .toLowerCase()
+              .includes(searchQuery.toString().toLowerCase())
           );
         }
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         console.log(filterResult);
       } else {
         if (searchQuery) {
           filterResult = membersList.filter((member: any) =>
-            member.name.toLowerCase().includes(searchQuery.toLowerCase())
+            member[searchFrom]
+              .toString()
+              .toLowerCase()
+              .includes(searchQuery.toString().toLowerCase())
           );
           if (filterResult.length == 0 && searchQuery) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
       }
 
       setLatestFiltersResult(filterResult);
+      // if (!searchQuery) console.log(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -473,9 +528,8 @@ export default function Membership() {
         .includes(value.toString().toLowerCase())
     );
 
-    console.log(filterResult);
-
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
@@ -486,6 +540,7 @@ export default function Membership() {
     }
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
@@ -502,10 +557,12 @@ export default function Membership() {
     }
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
     setLatestFiltersResult(filterResult);
+    setTotal(filterResult.length);
   };
 
   const handleApproval = async (memberId: any, isApproved: any) => {

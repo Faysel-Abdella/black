@@ -70,6 +70,7 @@ export default function MembershipManagement() {
       admin.loginId.toString().toLowerCase().includes(value.toLowerCase())
     );
     setSearchResults(filteredMembers);
+    setTotal(filteredMembers.length);
   };
 
   const fetchMemberLists = async () => {

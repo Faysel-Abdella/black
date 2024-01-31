@@ -153,6 +153,7 @@ export default function Announcement() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -163,6 +164,7 @@ export default function Announcement() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -173,10 +175,12 @@ export default function Announcement() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       } else {
         // If the end date is  specified filter all dates greater than or equal start date and less than or equal to end date
 
@@ -187,6 +191,7 @@ export default function Announcement() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -203,10 +208,12 @@ export default function Announcement() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       }
     } else {
       let filterResult: any = [];
@@ -215,6 +222,7 @@ export default function Announcement() {
           (list: any) => list.status == statusFilter
         );
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -222,6 +230,7 @@ export default function Announcement() {
             member.title.toLowerCase().includes(searchQuery.toLowerCase())
           );
           if (filterResult.length == 0) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
@@ -231,12 +240,14 @@ export default function Announcement() {
             member.title.toLowerCase().includes(searchQuery.toLowerCase())
           );
           if (filterResult.length == 0) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
       }
 
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -257,6 +268,7 @@ export default function Announcement() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -267,6 +279,7 @@ export default function Announcement() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
@@ -277,10 +290,12 @@ export default function Announcement() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
 
         setLatestFiltersResult(filterResult);
+        setTotal(filterResult.length);
       }
     } else {
       let filterResult: any = [];
@@ -291,6 +306,7 @@ export default function Announcement() {
         );
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (statusFilter != "" && statusFilter != "all") {
@@ -300,6 +316,7 @@ export default function Announcement() {
         }
 
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -308,6 +325,7 @@ export default function Announcement() {
           );
         }
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       }
@@ -316,6 +334,7 @@ export default function Announcement() {
           (list: any) => list.status == statusFilter
         );
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -324,10 +343,12 @@ export default function Announcement() {
           );
         }
         if (filterResult.length == 0) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       }
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -377,9 +398,11 @@ export default function Announcement() {
       }
       console.log(filterResult);
       if (filterResult.length == 0) {
+        setTotal(0);
         return setShowNotFound(true);
       }
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     } else {
       if (startDateFilter && endDataFilter) {
         filterResult = noticesList.filter(
@@ -388,6 +411,7 @@ export default function Announcement() {
             new Date(list.endDateTime) <= new Date(endDataFilter)
         );
         if (filterResult.length == 0 && !searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -396,6 +420,7 @@ export default function Announcement() {
           );
         }
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
       } else if (startDateFilter) {
@@ -405,6 +430,7 @@ export default function Announcement() {
           (list: any) => new Date(list.joinDate) >= new Date(startDateFilter)
         );
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         if (searchQuery) {
@@ -413,6 +439,7 @@ export default function Announcement() {
           );
         }
         if (filterResult.length == 0 && searchQuery) {
+          setTotal(0);
           return setShowNotFound(true);
         }
         console.log(filterResult);
@@ -422,12 +449,14 @@ export default function Announcement() {
             member.title.toLowerCase().includes(searchQuery.toLowerCase())
           );
           if (filterResult.length == 0 && searchQuery) {
+            setTotal(0);
             return setShowNotFound(true);
           }
         }
       }
 
       setLatestFiltersResult(filterResult);
+      setTotal(filterResult.length);
     }
   };
 
@@ -442,6 +471,7 @@ export default function Announcement() {
     );
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
@@ -452,6 +482,7 @@ export default function Announcement() {
     }
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
@@ -468,10 +499,12 @@ export default function Announcement() {
     }
 
     if (filterResult.length == 0) {
+      setTotal(0);
       return setShowNotFound(true);
     }
 
     setLatestFiltersResult(filterResult);
+    setTotal(filterResult.length);
   };
 
   const columns: ColumnsType<TableData> = [

@@ -41,6 +41,7 @@ export default function Account() {
   const [adminsList, setAdminsList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   // Search functionality states
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   // Updating admin data
@@ -132,6 +133,7 @@ export default function Account() {
       admin.name.toLowerCase().includes(value.toLowerCase())
     );
     setSearchResults(filteredAdmins);
+    setTotal(filteredAdmins.length);
   };
 
   const tableColumns: ColumnsType<TableData> = [
